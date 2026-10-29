@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calendar</title>
+    <style>
+        table {
+            border-collapse: collapse
+        }
+
+        th,
+        td {
+            border: 1px solid;
+            padding: 8px;
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>YEAR: <input type="number" id="year_get"><br><br>MONTH (1-12): <input type="number" id="month_get" min="1"
+        max="12"><br><br><button onclick="generate()">Display Calendar</button><br><br>
+    <div id="content"></div>
+    <script>function generate() { let y = Number(document.getElementById('year_get').value), m = Number(document.getElementById('month_get').value); if (!y || m < 1 || m > 12) { alert('Enter a valid year and month'); return } let d = new Date(y, m - 1, 1), html = '<table><tr>' + ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(x => '<th>' + x + '</th>').join('') + '</tr><tr>'; for (let i = 0; i < d.getDay(); i++)html += '<td></td>'; while (d.getMonth() === m - 1) { html += '<td>' + d.getDate() + '</td>'; if (d.getDay() === 6) html += '</tr><tr>'; d.setDate(d.getDate() + 1) } html += '</tr></table>'; document.getElementById('content').innerHTML = html }</script>
+</body>
+
+</html>
